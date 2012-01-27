@@ -1,0 +1,20 @@
+% Created by Marsyas
+@relation stacked_tathagata_test.arff
+@attribute bl real
+@attribute cl real
+@attribute co real
+@attribute di real
+@attribute hi real
+@attribute ja real
+@attribute me real
+@attribute po real
+@attribute re real
+@attribute ro real
+@attribute output {bl,cl,co,di,hi,ja,me,po,re,ro}
+
+
+@data
+% filename /home/tathagata/UserVideoDownloads/tathagata_vdos/video_downloads/dMC3prdHrn8.wav
+0.046226,0.004352,0.283029,0.014241,0.031635,0.018046,0.002730,0.246074,0.297059,0.056607,re
+% filename /home/tathagata/UserVideoDownloads/tathagata_vdos/video_downloads/n3HQ7A0RRv0.wav
+0.000567,0.000020,0.000067,0.000012,0.204618,0.000004,0.000009,0.793170,0.001490,0.000044,po

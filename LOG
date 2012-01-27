@@ -1,0 +1,9 @@
+LOG file for research 
+
+1. In k_new.cpp the first 10 samples have for 0 for the class value.  The rest of the files have either a 1 or a 0 
+for a rating.  All of the points are plotted on the graph and then k-nearest are computed and the resulting verdict is returned in the form of a name of the file and either a 1 or a 0(like or dislike, respectively).
+
+2. k.cpp has 2 sets of points, plot points and query points.  The plot points are put on the graph first and then the query points are put up against the plot points to check for distance calculations.  There are a few problems with this approach which need to be fixed in order to use this method.  
+
+3.  k_mp.cpp has a parallel approach which calculated the closeness of all of the points and returns a multidementional array that for each point P, it has the corresponding nearest neighbors K.  So, the matrix is of size P * K.    
+

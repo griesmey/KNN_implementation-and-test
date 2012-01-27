@@ -1,0 +1,4 @@
+# makefile for k-classifier; k-nearest implementation
+
+all:
+	g++ -D DIM=$(DIM) -g knn.cpp -o knn -ISTANN/include -fpermissive 

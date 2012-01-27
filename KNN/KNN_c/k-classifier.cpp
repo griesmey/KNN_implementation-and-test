@@ -1,0 +1,100 @@
+//Author: Robert Griesmeyer
+//Date: 11-17-2010
+// Purpose: Take in weighted coefficient data and plot them using those points with
+// their respective ratings and then take the k-nearest to determine likes and dislikes 
+// of songs that we are going to call the query set.  We know nothing about the query 
+// besides that of their coefficients.  
+// In this implemenation the data points are 10 dimentional; each corresponds to a certain
+// genre weight that specifies which of the genres the song is similar to.  
+//
+#include <iostream>
+#include <string>
+#include <cstring>
+#include <fstream>
+#include <cctype>
+#include <vector>
+#include <map>
+#include <stdio.h>
+using namespace std;
+
+//STANN
+#include <sfcnn.hpp>
+#include <bruteNN.hpp>
+#include <dpoint.hpp>
+#include <test.hpp>
+
+typedef reviver::dpoint<float, 10> Point;
+
+/* return true if success                                   *
+ * points - vector of points to graph in cloud              *
+ * plots - map of filenames with corresponding class values */
+bool read_arff(vector<Point> &points, vector<string> &names,
+	       vector<unsigned int> &classtypes_, char* filename_) {
+  ifstream f_plot;
+  string lineread;
+  float a, b, c, d, e, f, g, h, i, j;
+  f_plot.open(filename_);
+  if(f_plot == NULL) perror("Error opening file datafile.");
+  else {
+    while(getline(f_plot, lineread)) { 
+      if(*lineread.begin() == '%' && lineread.find("filename") != -1) {
+	int start, end;
+	long unsigned int classvalue_;
+	string id;
+	start = lineread.find_last_of('/') + 1;  // get rid of delim
+	end = lineread.find_last_of('.');
+	id = lineread.substr(start, end - start);
+	names.push_back(id);  // insert name
+	getline(f_plot, lineread);
+	sscanf(lineread.c_str(), "%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%d",
+	       &a, &b, &c, &d, &e, &f, &g, &h, &i, &j, &classvalue_);
+	classtypes_.push_back(classvalue_);  //insert class
+	float data[10] = {a, b, c, d, e, f, g, h, i, j};	     
+	Point tempPoint(&data[0]);
+	points.push_back(tempPoint);  //insert point
+	
+      }
+    }
+  }
+}
+
+int get_majority_vote(vector<unsigned int> classtypes,
+		      vector<long unsigned int> k_ind) {
+  int total = 0;
+  for(int k = 0; k < k_ind.size(); k++) {
+    if(classtypes[k_ind[k]] > 0) {
+      total++;
+    }
+  }
+  if(total >= (k_ind.size() / 2))
+    return 1;
+  else 
+    return 0;
+}
+
+int main(int argc, char* argv[]) {
+  vector<Point> points;
+  string lineread;
+  vector<unsigned int> classtypes;
+  vector<long unsigned int> k_ind;
+  vector<string> plot_names;
+  unsigned int K;
+  unsigned int NUM_TEST;
+  map<string, int>::iterator it;
+  if(argc < 4) {
+    perror("USAGE: <main> <arff_file> <k> <num_test>");
+    exit(1);
+  }
+  K = atoi(argv[2]);
+  NUM_TEST = atoi(argv[3]);
+  read_arff(points, plot_names, classtypes, argv[1]);
+  
+  sfcnn<Point, 10, float> NN(&points[0], points.size());
+  for(int i = 0; i < NUM_TEST; i++) {
+    NN.ksearch(points[i], K, k_ind);
+  
+    cout << plot_names[i] << "\t" << 
+      get_majority_vote(classtypes, k_ind) << endl;
+  }
+    return 0;
+}

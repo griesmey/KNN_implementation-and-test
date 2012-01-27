@@ -1,0 +1,28 @@
+% Created by Marsyas
+@relation stacked_tathagata_test.arff
+@attribute bl real
+@attribute cl real
+@attribute co real
+@attribute di real
+@attribute hi real
+@attribute ja real
+@attribute me real
+@attribute po real
+@attribute re real
+@attribute ro real
+@attribute output {bl,cl,co,di,hi,ja,me,po,re,ro}
+
+
+@data
+% filename /home/tathagata/UserVideoDownloads/tathagata_vdos/video_downloads/ZYqSiNf1T_U.wav
+0.013054,0.006968,0.160150,0.435575,0.025751,0.014185,0.261049,0.010542,0.011556,0.061169,di
+% filename /home/tathagata/UserVideoDownloads/tathagata_vdos/video_downloads/zTl3fGeKgjU.wav
+0.000001,0.000001,0.000002,0.000001,0.002455,0.000000,0.000000,0.997540,0.000000,0.000000,po
+% filename /home/tathagata/UserVideoDownloads/tathagata_vdos/video_downloads/ZoSVZ7tXbxo.wav
+0.100033,0.004075,0.423332,0.011063,0.176774,0.004209,0.016845,0.111071,0.123057,0.029542,co
+% filename /home/tathagata/UserVideoDownloads/tathagata_vdos/video_downloads/ZnTCLQWAs8k.wav
+0.009920,0.001662,0.004819,0.001080,0.919046,0.001824,0.002555,0.013078,0.023743,0.022273,hi
+% filename /home/tathagata/UserVideoDownloads/tathagata_vdos/video_downloads/ZmsAKIpE12o.wav
+0.000279,0.000001,0.000001,0.002688,0.020278,0.000000,0.000001,0.976748,0.000003,0.000000,po
+% filename /home/tathagata/UserVideoDownloads/tathagata_vdos/video_downloads/Zjb5o2EbPpY.wav
+0.001286,0.000003,0.000004,0.000000,0.000399,0.000020,0.000001,0.998209,0.000076,0.000001,po
